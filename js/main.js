@@ -71,7 +71,10 @@
   function renderListings() {
     var grids = document.querySelectorAll(".listing-grid");
     grids.forEach(function (grid) {
-      renderGrid(grid, { community: grid.getAttribute("data-community") || undefined });
+      renderGrid(grid, {
+        community: grid.getAttribute("data-community") || undefined,
+        limit: grid.getAttribute("data-limit") || undefined
+      });
     });
   }
 
