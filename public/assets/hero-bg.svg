@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 900" preserveAspectRatio="xMidYMax slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#233863"/>
+      <stop offset="0.32" stop-color="#5c4a7a"/>
+      <stop offset="0.58" stop-color="#c9637a"/>
+      <stop offset="0.78" stop-color="#f0925a"/>
+      <stop offset="1" stop-color="#ffc370"/>
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff3d6" stop-opacity="0.95"/>
+      <stop offset="0.35" stop-color="#ffd694" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffd694" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="farMtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8a6a8f"/>
+      <stop offset="1" stop-color="#6d5580"/>
+    </linearGradient>
+    <linearGradient id="midMtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5c4468"/>
+      <stop offset="1" stop-color="#493856"/>
+    </linearGradient>
+    <linearGradient id="nearHill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2c2340"/>
+      <stop offset="1" stop-color="#1c1730"/>
+    </linearGradient>
+
+    <g id="saguaro">
+      <rect x="-9" y="-150" width="18" height="150" rx="9"/>
+      <path d="M -9 -95 C -46 -95 -46 -60 -46 -60 L -46 -30 C -46 -22 -37 -22 -37 -30 L -37 -60 C -37 -78 -20 -85 -9 -85 Z"/>
+      <path d="M 9 -110 C 40 -110 40 -80 40 -80 L 40 -45 C 40 -37 31 -37 31 -45 L 31 -80 C 31 -95 20 -100 9 -100 Z"/>
+    </g>
+  </defs>
+
+  <rect width="1920" height="900" fill="url(#sky)"/>
+
+  <circle cx="1180" cy="560" r="130" fill="url(#sunGlow)"/>
+  <circle cx="1180" cy="560" r="58" fill="#fff6e0" opacity="0.9"/>
+
+  <!-- far hazy buttes (Papago-Park-style rock formations), left side -->
+  <path d="M 0 640 L 90 560 L 160 600 L 230 520 L 300 590 L 380 545 L 460 610 L 540 630 L 540 900 L 0 900 Z" fill="url(#farMtn)" opacity="0.75"/>
+
+  <!-- Camelback Mountain silhouette (twin hump + head), right-mid -->
+  <path d="M 980 660
+           L 1050 560
+           C 1065 535 1090 535 1105 558
+           L 1150 625
+           C 1160 640 1155 660 1140 665
+           L 1180 610
+           C 1195 585 1225 583 1240 608
+           C 1252 628 1248 652 1232 665
+           L 1320 660
+           L 1360 700
+           L 1360 900
+           L 980 900
+           Z" fill="url(#midMtn)"/>
+
+  <!-- rolling mid-ground ridge connecting scene, behind foreground hill -->
+  <path d="M 0 760 C 220 700 460 730 700 760 C 940 790 1150 720 1400 745 C 1600 765 1780 730 1920 750 L 1920 900 L 0 900 Z" fill="url(#midMtn)" opacity="0.55"/>
+
+  <!-- foreground desert hill (darkest, closest) -->
+  <path d="M 0 820 C 260 780 480 815 760 800 C 1040 785 1260 830 1560 805 C 1710 793 1830 812 1920 800 L 1920 900 L 0 900 Z" fill="url(#nearHill)"/>
+
+  <!-- saguaro cacti scattered along the foreground ridge -->
+  <use href="#saguaro" x="150" y="800" fill="#1c1730"/>
+  <use href="#saguaro" x="330" y="815" fill="#1c1730" transform="scale(0.8)" transform-origin="330 815"/>
+  <use href="#saguaro" x="1620" y="805" fill="#1c1730" transform="scale(1.15)" transform-origin="1620 805"/>
+  <use href="#saguaro" x="1780" y="815" fill="#1c1730" transform="scale(0.7)" transform-origin="1780 815"/>
+  <use href="#saguaro" x="700" y="808" fill="#1c1730" transform="scale(0.6)" transform-origin="700 808"/>
+</svg>

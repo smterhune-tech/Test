@@ -115,9 +115,20 @@ ul { margin: 0; padding: 0; list-style: none; }
   min-height: 620px;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, var(--color-navy-dark), var(--color-navy) 55%, #1c3a5e);
+  background-color: var(--color-navy-dark);
+  background-image: url("/assets/hero-bg.svg");
+  background-size: cover;
+  background-position: center bottom;
   color: #fff;
   padding: 80px 20px 64px;
+}
+/* Scrim between the background art and content so hero copy stays
+   readable regardless of how busy the underlying image is. */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(10,26,46,0.82) 0%, rgba(15,36,64,0.72) 45%, rgba(15,36,64,0.55) 75%, rgba(15,36,64,0.72) 100%);
 }
 .hero-content { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; text-align: center; }
 .hero-eyebrow { text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.78rem; color: var(--color-gold); font-weight: 700; margin-bottom: 12px; }
