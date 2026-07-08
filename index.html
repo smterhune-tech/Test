@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terhune Realty Partners | Austin Homes for Sale &amp; Home Values</title>
+<meta name="description" content="Search all Austin-area homes for sale, get an instant home value estimate, and explore neighborhood guides with Terhune Realty Partners.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127968;</text></svg>">
+<link rel="stylesheet" href="css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Terhune Realty Partners",
+  "areaServed": "Austin, TX",
+  "telephone": "+1-512-555-0142",
+  "url": "https://www.terhunerealtypartners.com"
+}
+</script>
+</head>
+<body>
+
+<!-- 1. STICKY HEADER -->
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">Terhune <span>Realty Partners</span></a>
+
+    <nav class="main-nav" id="main-nav">
+      <a href="#search">Buy</a>
+      <a href="#communities">Communities</a>
+      <a href="#valuation">Sell / Home Value</a>
+      <a href="#about">About</a>
+      <a href="#video">Market Updates</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="tel:+15125550142" class="phone-link">(512) 555-0142</a>
+      <a href="#valuation" class="btn btn-primary">Get My Home Value</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- 2. HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Austin Metro Real Estate</p>
+      <h1>Find Your Next Home &mdash; Or Find Out What Yours Is Worth</h1>
+      <p class="hero-sub">Takes under 2 minutes. No obligation, no spam.</p>
+
+      <div class="hero-dual-path" id="search">
+        <form class="idx-search-form" id="idx-search-form">
+          <div class="idx-search-row">
+            <input type="text" id="idx-search-input" placeholder="Search all Austin-metro homes by city, ZIP, or neighborhood" autocomplete="off">
+            <button type="submit" class="btn btn-primary">Search Homes</button>
+          </div>
+          <div class="idx-quick-filters">
+            <label><input type="checkbox" name="beds" value="3"> 3+ beds</label>
+            <label><input type="checkbox" name="pool"> Pool</label>
+            <label><input type="checkbox" name="new"> New listings</label>
+          </div>
+        </form>
+
+        <div class="hero-divider"><span>or</span></div>
+
+        <a href="#valuation" class="seller-cta">
+          <strong>What&rsquo;s My Home Worth?</strong>
+          <span>Get an instant seller estimate &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. AUTHORITY STRIP -->
+  <section class="authority-strip">
+    <div class="authority-inner">
+      <div class="authority-stat"><strong>$412M+</strong><span>Closed volume since 2019</span></div>
+      <div class="authority-stat"><strong>#1</strong><span>Boutique team, Austin Board of Realtors, 2025</span></div>
+      <div class="authority-stat"><strong>4.9 &#9733;</strong><span>1,240+ Google &amp; Zillow reviews</span></div>
+      <div class="authority-stat"><strong>1,800+</strong><span>Families served</span></div>
+    </div>
+  </section>
+
+  <!-- 4. FEATURED LISTINGS -->
+  <section class="section listings-section" id="listings">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Featured Austin-Area Listings</h2>
+        <p>A sample of homes currently on the market. Save a search to get notified the moment new listings match.</p>
+      </div>
+
+      <div class="listing-grid" id="listing-grid"></div>
+
+      <div class="save-search-prompt">
+        <p><strong>Don&rsquo;t see the right fit yet?</strong> Save this search and we&rsquo;ll email you the moment a matching home hits the market.</p>
+        <button class="btn btn-secondary" id="save-search-btn">Save This Search</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SELLER CONVERSION BLOCK -->
+  <section class="section valuation-section" id="valuation">
+    <div class="section-inner valuation-inner">
+      <div class="valuation-copy">
+        <h2>What&rsquo;s Your Austin Home Worth Today?</h2>
+        <p>Get a free, instant estimate based on real-time market data &mdash; plus a custom report from a local agent who actually knows your street.</p>
+        <ul class="valuation-points">
+          <li>Instant estimate, no obligation</li>
+          <li>Backed by a licensed local agent, not just an algorithm</li>
+          <li>Takes under 2 minutes</li>
+        </ul>
+      </div>
+
+      <form class="valuation-form" id="valuation-form" novalidate>
+        <div class="form-step" id="valuation-step-1" data-step="1">
+          <label for="valuation-address">Property Address</label>
+          <input type="text" id="valuation-address" name="address" placeholder="123 Main St, Austin, TX" required>
+          <button type="button" class="btn btn-primary" id="valuation-continue">Get My Free Estimate</button>
+          <p class="form-microcopy">No obligation &middot; Takes under 2 minutes</p>
+        </div>
+
+        <div class="form-step is-hidden" id="valuation-step-2" data-step="2">
+          <p class="form-step-lead">Almost done &mdash; where should we send your report?</p>
+          <label for="valuation-name">Full Name</label>
+          <input type="text" id="valuation-name" name="name" required>
+          <label for="valuation-email">Email</label>
+          <input type="email" id="valuation-email" name="email" required>
+          <label for="valuation-phone">Phone</label>
+          <input type="tel" id="valuation-phone" name="phone" required>
+          <button type="submit" class="btn btn-primary">See My Home Value</button>
+        </div>
+
+        <div class="form-step is-hidden" id="valuation-step-success" data-step="success">
+          <h3>Thanks! Your estimate is on its way.</h3>
+          <p id="valuation-result-text"></p>
+          <p class="form-microcopy">A Terhune Realty Partners agent will follow up shortly with your full report.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 6. COMMUNITY / NEIGHBORHOOD GRID -->
+  <section class="section communities-section" id="communities">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Explore Austin-Area Neighborhoods</h2>
+        <p>Every community page includes local market stats, schools, and a filtered home search &mdash; start with the areas our clients ask about most.</p>
+      </div>
+      <div class="community-grid">
+        <a class="community-card" href="community/downtown-austin.html">
+          <span class="community-name">Downtown Austin</span>
+          <span class="community-meta">Median: $685K &middot; 42 active listings</span>
+        </a>
+        <a class="community-card" href="community/south-congress.html">
+          <span class="community-name">South Congress (SoCo)</span>
+          <span class="community-meta">Median: $612K &middot; 28 active listings</span>
+        </a>
+        <a class="community-card" href="community/cedar-park.html">
+          <span class="community-name">Cedar Park</span>
+          <span class="community-meta">Median: $498K &middot; 61 active listings</span>
+        </a>
+        <a class="community-card" href="community/westlake-hills.html">
+          <span class="community-name">Westlake Hills</span>
+          <span class="community-meta">Median: $1.4M &middot; 19 active listings</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. BUYER / SELLER PROCESS EXPLAINERS -->
+  <section class="section process-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>How It Works</h2>
+      </div>
+      <div class="process-columns">
+        <div class="process-col">
+          <h3>Buying a Home</h3>
+          <ol class="process-steps">
+            <li><strong>Get pre-approved.</strong> We&rsquo;ll connect you with a trusted local lender partner.</li>
+            <li><strong>Search &amp; tour.</strong> Save searches, get instant alerts, and tour homes on your schedule.</li>
+            <li><strong>Make your offer.</strong> Your agent negotiates and guides you to closing.</li>
+          </ol>
+        </div>
+        <div class="process-col">
+          <h3>Selling a Home</h3>
+          <ol class="process-steps">
+            <li><strong>Get your home value.</strong> Start with an instant estimate above.</li>
+            <li><strong>List &amp; market.</strong> Professional photos, staging guidance, and targeted exposure.</li>
+            <li><strong>Close with confidence.</strong> We handle the details from offer to closing day.</li>
+          </ol>
+          <a href="#valuation" class="text-link">Prefer a cash offer? Ask us about our iBuyer option &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. VIDEO SECTION -->
+  <section class="section video-section" id="video">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Neighborhood Tours &amp; Market Updates</h2>
+        <p>New videos every week &mdash; local guides, market data, and the occasional home tour.</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb" data-video-title="Moving to Austin: 2026 Buyer's Guide"></div>
+          <p>Moving to Austin: 2026 Buyer&rsquo;s Guide</p>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb" data-video-title="Austin Market Update &mdash; July 2026"></div>
+          <p>Austin Market Update &mdash; July 2026</p>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb" data-video-title="Neighborhood Tour: South Congress"></div>
+          <p>Neighborhood Tour: South Congress</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. SOCIAL PROOF -->
+  <section class="section testimonials-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>What Our Clients Say</h2>
+      </div>
+      <div class="testimonial-grid">
+        <blockquote class="testimonial">
+          <p>&ldquo;They responded within minutes of our inquiry and had us touring homes the same week.&rdquo;</p>
+          <cite>&mdash; M. Alvarez, Buyer, Cedar Park</cite>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>&ldquo;The home value estimate was spot on, and we closed 8% over asking.&rdquo;</p>
+          <cite>&mdash; J. Whitfield, Seller, Westlake Hills</cite>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p>&ldquo;Best local market knowledge of any team we talked to.&rdquo;</p>
+          <cite>&mdash; R. Chen, Buyer, Downtown Austin</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. LEAD MAGNET / EMAIL OPT-IN -->
+  <section class="section lead-magnet-section">
+    <div class="section-inner lead-magnet-inner">
+      <div>
+        <h2>Free Relocation &amp; Buyer&rsquo;s Guide</h2>
+        <p>Get our full Austin relocation guide: neighborhoods, schools, commute times, and current market data &mdash; delivered to your inbox.</p>
+      </div>
+      <form class="lead-magnet-form" id="lead-magnet-form">
+        <input type="email" placeholder="you@email.com" required aria-label="Email address">
+        <button type="submit" class="btn btn-primary">Send Me the Guide</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- 11. ABOUT / TEAM -->
+  <section class="section about-section" id="about">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Meet the Team</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo" aria-hidden="true"></div>
+          <h3>Sharon Terhune</h3>
+          <p>Team Lead &amp; Broker</p>
+        </div>
+        <div class="team-card">
+          <div class="team-photo" aria-hidden="true"></div>
+          <h3>Marcus Bell</h3>
+          <p>Buyer Specialist</p>
+        </div>
+        <div class="team-card">
+          <div class="team-photo" aria-hidden="true"></div>
+          <h3>Priya Nair</h3>
+          <p>Listing Specialist</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 12. FOOTER -->
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Terhune Realty Partners</h4>
+      <p>123 Congress Ave, Suite 400<br>Austin, TX 78701</p>
+      <p><a href="tel:+15125550142">(512) 555-0142</a><br><a href="mailto:hello@terhunerealtypartners.com">hello@terhunerealtypartners.com</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Communities</h4>
+      <ul>
+        <li><a href="community/downtown-austin.html">Downtown Austin</a></li>
+        <li><a href="community/south-congress.html">South Congress</a></li>
+        <li><a href="community/cedar-park.html">Cedar Park</a></li>
+        <li><a href="community/westlake-hills.html">Westlake Hills</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#video">Market Updates</a></li>
+        <li><a href="#valuation">Home Value</a></li>
+        <li><a href="#search">Search Homes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <ul class="social-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Terhune Realty Partners. Equal Housing Opportunity. Information deemed reliable but not guaranteed. IDX/MLS data provided for consumers' personal, non-commercial use.</p>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA BAR -->
+<div class="mobile-sticky-cta" id="mobile-sticky-cta">
+  <a href="tel:+15125550142" class="btn btn-secondary">Call</a>
+  <a href="#valuation" class="btn btn-primary">Get My Home Value</a>
+</div>
+
+<!-- EXIT-INTENT MODAL -->
+<div class="modal-overlay is-hidden" id="exit-modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="exit-modal-title">
+    <button class="modal-close" id="exit-modal-close" aria-label="Close">&times;</button>
+    <h3 id="exit-modal-title">Before You Go &mdash; What&rsquo;s Your Home Worth?</h3>
+    <p>Get a free instant estimate. Takes under 2 minutes.</p>
+    <a href="#valuation" class="btn btn-primary" id="exit-modal-cta">Get My Free Estimate</a>
+  </div>
+</div>
+
+<!-- SOFT REGISTRATION GATE MODAL (triggered after viewing listings) -->
+<div class="modal-overlay is-hidden" id="gate-modal-overlay">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="gate-modal-title">
+    <button class="modal-close" id="gate-modal-close" aria-label="Close">&times;</button>
+    <h3 id="gate-modal-title">Register to See Full Listing Details</h3>
+    <p>Create a free account to unlock full listing photos, price history, and save your favorites.</p>
+    <form id="gate-form">
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <button type="submit" class="btn btn-primary">Continue</button>
+    </form>
+    <button class="text-link" id="gate-modal-skip">Not now</button>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
