@@ -1,40 +1,77 @@
 (function () {
   "use strict";
 
-  /* ---------- Mock IDX listing data ---------- */
-  var LISTINGS = [
-    { price: 725000, address: "1420 Rio Grande St, Austin, TX", beds: 3, baths: 2, sqft: 1850, community: "downtown-austin", badge: "New" },
-    { price: 549900, address: "2208 Toro Grande Dr, Cedar Park, TX", beds: 4, baths: 3, sqft: 2410, community: "cedar-park", badge: null },
-    { price: 1650000, address: "3312 Redbud Trail, Austin, TX", beds: 5, baths: 4, sqft: 4120, community: "westlake-hills", badge: "Price Reduced" },
-    { price: 615000, address: "908 Elizabeth St, Austin, TX", beds: 2, baths: 2, sqft: 1420, community: "south-congress", badge: "New" },
-    { price: 489000, address: "1104 Sunset Ridge Dr, Cedar Park, TX", beds: 3, baths: 2, sqft: 2010, community: "cedar-park", badge: null },
-    { price: 899000, address: "610 W 6th St #802, Austin, TX", beds: 2, baths: 2, sqft: 1580, community: "downtown-austin", badge: null }
-  ];
-
   function formatPrice(n) {
+    if (n === null || n === undefined) return "Price on request";
     return "$" + n.toLocaleString("en-US");
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function listingCardHtml(l) {
+    var photo = l.photoUrl
+      ? '<img src="' + escapeHtml(l.photoUrl) + '" alt="' + escapeHtml(l.address) + '" loading="lazy">'
+      : "Photo";
+    return (
+      '<article class="listing-card" data-id="' + escapeHtml(l.id || "") + '" data-address="' + escapeHtml(l.address) + '">' +
+        '<div class="listing-photo">' + (l.badge ? '<span class="listing-badge">' + escapeHtml(l.badge) + "</span>" : "") + photo + "</div>" +
+        '<div class="listing-body">' +
+          '<div class="listing-price">' + formatPrice(l.price) + "</div>" +
+          '<div class="listing-address">' + escapeHtml(l.address) + "</div>" +
+          '<div class="listing-meta">' + (l.beds ?? "?") + " bd &middot; " + (l.baths ?? "?") + " ba &middot; " + (l.sqft ? l.sqft.toLocaleString() : "?") + " sqft</div>" +
+          '<span class="listing-cta">View Details &rarr;</span>' +
+        "</div>" +
+      "</article>"
+    );
+  }
+
+  function setGridState(grid, html) {
+    grid.innerHTML = html;
+  }
+
+  function fetchListings(params) {
+    var qs = Object.keys(params)
+      .filter(function (k) { return params[k] !== undefined && params[k] !== null && params[k] !== ""; })
+      .map(function (k) { return encodeURIComponent(k) + "=" + encodeURIComponent(params[k]); })
+      .join("&");
+    return fetch("/api/listings" + (qs ? "?" + qs : ""))
+      .then(function (res) {
+        if (!res.ok) throw new Error("Listing search failed (" + res.status + ")");
+        return res.json();
+      });
+  }
+
+  function renderGrid(grid, params) {
+    setGridState(grid, '<p class="listing-loading">Loading listings&hellip;</p>');
+    fetchListings(params)
+      .then(function (data) {
+        var listings = data.listings || [];
+        if (!listings.length) {
+          setGridState(grid, '<p class="listing-empty">No matching listings right now &mdash; try a different search.</p>');
+          return;
+        }
+        setGridState(grid, listings.map(listingCardHtml).join(""));
+        if (data.source === "spark") {
+          grid.insertAdjacentHTML(
+            "afterend",
+            '<p class="idx-attribution">Listing data provided by IDX via Flexmls. Information deemed reliable but not guaranteed.</p>'
+          );
+        }
+      })
+      .catch(function (err) {
+        console.error("[listings] fetch failed:", err);
+        setGridState(grid, '<p class="listing-error">We couldn&rsquo;t load listings right now. Please call us at (512) 555-0142.</p>');
+      });
   }
 
   function renderListings() {
     var grids = document.querySelectorAll(".listing-grid");
     grids.forEach(function (grid) {
-      var community = grid.getAttribute("data-community");
-      var items = community ? LISTINGS.filter(function (l) { return l.community === community; }) : LISTINGS;
-      if (!items.length) items = LISTINGS.slice(0, 3);
-
-      grid.innerHTML = items.map(function (l) {
-        return (
-          '<article class="listing-card" data-address="' + l.address + '">' +
-            '<div class="listing-photo">' + (l.badge ? '<span class="listing-badge">' + l.badge + "</span>" : "") + "Photo</div>" +
-            '<div class="listing-body">' +
-              '<div class="listing-price">' + formatPrice(l.price) + "</div>" +
-              '<div class="listing-address">' + l.address + "</div>" +
-              '<div class="listing-meta">' + l.beds + " bd &middot; " + l.baths + " ba &middot; " + l.sqft.toLocaleString() + " sqft</div>" +
-              '<span class="listing-cta">View Details &rarr;</span>' +
-            "</div>" +
-          "</article>"
-        );
-      }).join("");
+      renderGrid(grid, { community: grid.getAttribute("data-community") || undefined });
     });
   }
 
@@ -98,7 +135,16 @@
     idxForm.addEventListener("submit", function (e) {
       e.preventDefault();
       var query = document.getElementById("idx-search-input").value.trim();
-      logLead({ type: "idx_search", query: query || "(all homes)" });
+      var minBeds = idxForm.querySelector('input[name="beds"]').checked ? 3 : undefined;
+      var pool = idxForm.querySelector('input[name="pool"]').checked;
+      var newOnly = idxForm.querySelector('input[name="new"]').checked;
+
+      logLead({ type: "idx_search", query: query || "(all homes)", minBeds: minBeds, pool: pool, newOnly: newOnly });
+
+      var resultsGrid = document.getElementById("listing-grid");
+      if (resultsGrid) {
+        renderGrid(resultsGrid, { q: query || undefined, minBeds: minBeds, pool: pool, newOnly: newOnly });
+      }
       document.getElementById("listings").scrollIntoView({ behavior: "smooth" });
     });
   }
