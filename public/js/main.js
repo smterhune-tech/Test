@@ -142,13 +142,87 @@
   var gateForm = document.getElementById("gate-form");
   var listingViewCount = 0;
   var GATE_THRESHOLD = 3;
-  var gateShown = false;
 
   function openModal(overlay) {
     if (overlay) overlay.classList.remove("is-hidden");
   }
   function closeModal(overlay) {
     if (overlay) overlay.classList.add("is-hidden");
+  }
+
+  /* ---------- Listing detail modal ---------- */
+  var listingModalOverlay = document.getElementById("listing-modal-overlay");
+  var listingModalBody = document.getElementById("listing-modal-body");
+  var listingModalClose = document.getElementById("listing-modal-close");
+
+  function listingDetailHtml(l) {
+    var photo = "";
+    if (l.photoUrl) {
+      photo = '<img src="' + escapeHtml(l.photoUrl) + '" alt="' + escapeHtml(l.address) + '">';
+    } else if (l.illustrationUrl) {
+      photo = '<img class="listing-illustration" src="' + escapeHtml(l.illustrationUrl) + '" alt="Illustration of a home in this style">';
+    }
+    return (
+      '<div class="listing-detail-photo">' + photo + "</div>" +
+      '<h3 id="listing-modal-title">' + formatPrice(l.price) + "</h3>" +
+      '<p class="listing-detail-address">' + escapeHtml(l.address) + "</p>" +
+      '<p class="listing-detail-meta">' + (l.beds ?? "?") + " bd &middot; " + (l.baths ?? "?") + " ba &middot; " + (l.sqft ? l.sqft.toLocaleString() : "?") + " sqft</p>" +
+      '<button type="button" class="btn btn-primary" id="listing-showing-btn">Request a Showing</button>' +
+      '<form class="listing-showing-form is-hidden" id="listing-showing-form" data-address="' + escapeHtml(l.address) + '">' +
+        '<input type="text" placeholder="Full Name" required>' +
+        '<input type="email" placeholder="Email" required>' +
+        '<input type="tel" placeholder="Phone" required>' +
+        '<button type="submit" class="btn btn-primary">Send Request</button>' +
+      "</form>"
+    );
+  }
+
+  function openListingDetail(id) {
+    if (!id || !listingModalOverlay) return;
+    listingModalBody.innerHTML = '<p class="listing-loading">Loading&hellip;</p>';
+    openModal(listingModalOverlay);
+    fetch("/api/listings/" + encodeURIComponent(id))
+      .then(function (res) {
+        if (!res.ok) throw new Error("Listing not found (" + res.status + ")");
+        return res.json();
+      })
+      .then(function (listing) {
+        listingModalBody.innerHTML = listingDetailHtml(listing);
+      })
+      .catch(function (err) {
+        console.error("[listing detail] fetch failed:", err);
+        listingModalBody.innerHTML = '<p class="listing-error">We couldn&rsquo;t load this listing. Please call us at (512) 555-0142.</p>';
+      });
+  }
+
+  if (listingModalClose) listingModalClose.addEventListener("click", function () { closeModal(listingModalOverlay); });
+  if (listingModalOverlay) {
+    listingModalOverlay.addEventListener("click", function (e) {
+      if (e.target === listingModalOverlay) closeModal(listingModalOverlay);
+    });
+  }
+  if (listingModalBody) {
+    listingModalBody.addEventListener("click", function (e) {
+      if (e.target.id === "listing-showing-btn") {
+        e.target.classList.add("is-hidden");
+        var form = document.getElementById("listing-showing-form");
+        if (form) form.classList.remove("is-hidden");
+      }
+    });
+    listingModalBody.addEventListener("submit", function (e) {
+      var form = e.target.closest("#listing-showing-form");
+      if (!form) return;
+      e.preventDefault();
+      var inputs = form.querySelectorAll("input");
+      logLead({
+        type: "showing_request",
+        address: form.getAttribute("data-address"),
+        name: inputs[0].value.trim(),
+        email: inputs[1].value.trim(),
+        phone: inputs[2].value.trim()
+      });
+      listingModalBody.innerHTML = "<h3>Request Sent!</h3><p>A Terhune Realty Partners agent will reach out shortly to schedule your showing.</p>";
+    });
   }
 
   if (idxForm) {
@@ -173,9 +247,10 @@
     var card = e.target.closest(".listing-card");
     if (!card) return;
     listingViewCount += 1;
-    if (listingViewCount >= GATE_THRESHOLD && !gateShown) {
-      gateShown = true;
+    if (listingViewCount >= GATE_THRESHOLD) {
       openModal(gateOverlay);
+    } else {
+      openListingDetail(card.getAttribute("data-id"));
     }
   });
 
@@ -239,6 +314,19 @@
       var name = document.getElementById("valuation-name").value.trim();
       var email = document.getElementById("valuation-email").value.trim();
       var phone = document.getElementById("valuation-phone").value.trim();
+
+      // Belt-and-suspenders: native `required` validation only checks
+      // fields that are currently rendered, which is normally correct here
+      // since step 1 is hidden by the time step 2 submits — but don't rely
+      // on that alone for a flow whose entire purpose is capturing contact
+      // info to hand off to the CRM.
+      if (!name || !email || !phone) {
+        var firstEmpty = !name ? document.getElementById("valuation-name")
+          : !email ? document.getElementById("valuation-email")
+          : document.getElementById("valuation-phone");
+        firstEmpty.focus();
+        return;
+      }
 
       logLead({ type: "valuation_complete", address: address, name: name, email: email, phone: phone });
 

@@ -25,16 +25,25 @@ app.get("/community/:slug", (req, res) => {
   res.render("community", { community, allCommunities: communities });
 });
 
+// Malformed numeric query params (e.g. ?minBeds=abc) must not silently
+// zero out results — Number("abc") is NaN, and comparisons/slices against
+// NaN quietly filter out everything rather than failing loudly. Treat
+// anything non-numeric as "not provided" instead.
+function toPositiveInt(value) {
+  const n = Number.parseInt(value, 10);
+  return Number.isFinite(n) && n > 0 ? n : undefined;
+}
+
 app.get("/api/listings", async (req, res) => {
   try {
     const results = await searchListings({
       community: req.query.community,
       city: req.query.city,
       query: req.query.q,
-      minBeds: req.query.minBeds,
+      minBeds: toPositiveInt(req.query.minBeds),
       pool: req.query.pool === "true",
       newOnly: req.query.newOnly === "true",
-      limit: req.query.limit
+      limit: toPositiveInt(req.query.limit)
     });
     res.json(results);
   } catch (err) {
@@ -60,20 +69,30 @@ app.post("/api/leads", async (req, res) => {
     return res.status(400).json({ error: "invalid_lead" });
   }
 
-  leadLog.appendLead({ ...lead, receivedAt: new Date().toISOString() });
+  let loggedLocally = true;
+  try {
+    leadLog.appendLead({ ...lead, receivedAt: new Date().toISOString() });
+  } catch (err) {
+    // Local logging is the one guarantee this endpoint makes — if even
+    // that fails (disk full, read-only filesystem), don't let it take the
+    // whole request down silently; still attempt CRM sync and tell the
+    // caller the local copy didn't land.
+    loggedLocally = false;
+    console.error("[/api/leads] local log write failed:", err.message);
+  }
 
   if (!followUpBoss.isSyncable(lead)) {
-    return res.json({ logged: true, synced: false });
+    return res.json({ logged: loggedLocally, synced: false });
   }
 
   try {
     const result = await followUpBoss.syncLead(lead);
-    res.json({ logged: true, ...result });
+    res.json({ logged: loggedLocally, ...result });
   } catch (err) {
     console.error("[/api/leads] FUB sync failed:", err.message);
-    // The lead is already safely logged locally — a CRM outage shouldn't
-    // surface as a failure to the visitor submitting the form.
-    res.json({ logged: true, synced: false, error: err.message });
+    // A CRM outage shouldn't surface as a failure to the visitor submitting
+    // the form — the local log (if it succeeded above) is the fallback.
+    res.json({ logged: loggedLocally, synced: false, error: err.message });
   }
 });
 

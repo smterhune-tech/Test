@@ -117,7 +117,7 @@
         </ul>
       </div>
 
-      <form class="valuation-form" id="valuation-form" novalidate>
+      <form class="valuation-form" id="valuation-form">
         <div class="form-step" id="valuation-step-1" data-step="1">
           <label for="valuation-address">Property Address</label>
           <input type="text" id="valuation-address" name="address" placeholder="123 Main St, Austin, TX" required>
@@ -341,6 +341,14 @@
       <button type="submit" class="btn btn-primary">Continue</button>
     </form>
     <button class="text-link" id="gate-modal-skip">Not now</button>
+  </div>
+</div>
+
+<!-- LISTING DETAIL MODAL -->
+<div class="modal-overlay is-hidden" id="listing-modal-overlay">
+  <div class="modal modal-listing" role="dialog" aria-modal="true" aria-labelledby="listing-modal-title">
+    <button class="modal-close" id="listing-modal-close" aria-label="Close">&times;</button>
+    <div id="listing-modal-body"><p class="listing-loading">Loading&hellip;</p></div>
   </div>
 </div>
 
