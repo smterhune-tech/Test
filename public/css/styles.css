@@ -116,9 +116,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: flex;
   align-items: center;
   background-color: var(--color-navy-dark);
-  background-image: url("/assets/hero-bg.svg");
-  background-size: cover;
-  background-position: center bottom;
+  /* Layered backgrounds: real photo on top, illustration underneath as a
+     fallback. If /assets/hero-photo.jpg doesn't exist, that layer just
+     fails to load and the SVG illustration behind it shows instead —
+     no broken-image icon, no missing background. Drop a photo in at
+     public/assets/hero-photo.jpg to have it take over automatically. */
+  background-image: url("/assets/hero-photo.jpg"), url("/assets/hero-bg.svg");
+  background-size: cover, cover;
+  background-position: center center, center bottom;
   color: #fff;
   padding: 80px 20px 64px;
 }
