@@ -1,12 +1,12 @@
 [
-  { "id": "mock-1", "price": 725000, "address": "1420 Rio Grande St, Austin, TX", "beds": 3, "baths": 2, "sqft": 1850, "community": "downtown-austin", "badge": "New" },
-  { "id": "mock-2", "price": 549000, "address": "1611 S 5th St, Austin, TX", "beds": 3, "baths": 2, "sqft": 1680, "community": "south-congress", "badge": "New" },
-  { "id": "mock-3", "price": 549900, "address": "2208 Toro Grande Dr, Cedar Park, TX", "beds": 4, "baths": 3, "sqft": 2410, "community": "cedar-park", "badge": null },
-  { "id": "mock-4", "price": 1650000, "address": "3312 Redbud Trail, Austin, TX", "beds": 5, "baths": 4, "sqft": 4120, "community": "westlake-hills", "badge": "Price Reduced" },
-  { "id": "mock-5", "price": 899000, "address": "610 W 6th St #802, Austin, TX", "beds": 2, "baths": 2, "sqft": 1580, "community": "downtown-austin", "badge": null },
-  { "id": "mock-6", "price": 489000, "address": "1104 Sunset Ridge Dr, Cedar Park, TX", "beds": 3, "baths": 2, "sqft": 2010, "community": "cedar-park", "badge": null },
-  { "id": "mock-7", "price": 615000, "address": "908 Elizabeth St, Austin, TX", "beds": 2, "baths": 2, "sqft": 1420, "community": "south-congress", "badge": null },
-  { "id": "mock-8", "price": 1980000, "address": "4407 Bee Caves Rd, Austin, TX", "beds": 4, "baths": 4, "sqft": 3850, "community": "westlake-hills", "badge": "New" },
-  { "id": "mock-9", "price": 725000, "address": "2100 Alameda Dr, Austin, TX", "beds": 3, "baths": 3, "sqft": 2050, "community": "south-congress", "badge": null },
-  { "id": "mock-10", "price": 2450000, "address": "1108 Cuernavaca Dr, Austin, TX", "beds": 5, "baths": 5, "sqft": 5200, "community": "westlake-hills", "badge": null }
+  { "id": "mock-1", "price": 725000, "address": "7120 E 6th Ave #204, Scottsdale, AZ", "beds": 3, "baths": 2, "sqft": 1850, "community": "old-town-scottsdale", "badge": "New" },
+  { "id": "mock-2", "price": 1050000, "address": "5115 E Calle Redonda, Phoenix, AZ", "beds": 3, "baths": 2, "sqft": 2100, "community": "arcadia", "badge": "New" },
+  { "id": "mock-3", "price": 549900, "address": "2208 E Palo Verde St, Gilbert, AZ", "beds": 4, "baths": 3, "sqft": 2410, "community": "gilbert", "badge": null },
+  { "id": "mock-4", "price": 3250000, "address": "5312 E Doubletree Ranch Rd, Paradise Valley, AZ", "beds": 5, "baths": 5, "sqft": 5100, "community": "paradise-valley", "badge": "Price Reduced" },
+  { "id": "mock-5", "price": 899000, "address": "4200 N Miller Rd #802, Scottsdale, AZ", "beds": 2, "baths": 2, "sqft": 1580, "community": "old-town-scottsdale", "badge": null },
+  { "id": "mock-6", "price": 489000, "address": "1104 E Juniper Ave, Gilbert, AZ", "beds": 3, "baths": 2, "sqft": 2010, "community": "gilbert", "badge": null },
+  { "id": "mock-7", "price": 1150000, "address": "4890 E Montecito Ave, Phoenix, AZ", "beds": 4, "baths": 3, "sqft": 2450, "community": "arcadia", "badge": null },
+  { "id": "mock-8", "price": 2950000, "address": "6407 N Invergordon Rd, Paradise Valley, AZ", "beds": 4, "baths": 4, "sqft": 4400, "community": "paradise-valley", "badge": "New" },
+  { "id": "mock-9", "price": 1280000, "address": "6218 E Highland Ave, Phoenix, AZ", "beds": 4, "baths": 3, "sqft": 2680, "community": "arcadia", "badge": null },
+  { "id": "mock-10", "price": 4100000, "address": "5108 E Foothill Dr, Paradise Valley, AZ", "beds": 6, "baths": 6, "sqft": 6200, "community": "paradise-valley", "badge": null }
 ]

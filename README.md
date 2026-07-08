@@ -1,4 +1,4 @@
-# Terhune Realty Partners
+# Relocation Expert Arizona
 
 Real estate lead-gen site with a Flexmls Spark API IDX integration and a Follow Up Boss CRM webhook.
 
@@ -29,7 +29,7 @@ Mock listings have no real photo — rather than hotlinking stock photography of
 2. Copy `.env.example` to `.env` and set `SPARK_API_KEY`.
 3. Restart the server — `/api/listings` will now query `https://sparkapi.com/v1/listings` directly instead of mock data.
 
-**Per-MLS field tuning:** every MLS board configures its own field set and neighborhood/subdivision naming. `lib/sparkApi.js` filters community pages using `COMMUNITY_FIELD_MAP` at the top of the file (currently mapped to City/SubdivisionName values for the demo Austin communities) — update that map to match your MLS's actual field names and values. Cross-check against [Spark's Standard Fields reference](https://sparkplatform.com/docs/api_services/standard_fields) for the target MLS before going live.
+**Per-MLS field tuning:** every MLS board configures its own field set and neighborhood/subdivision naming. `lib/sparkApi.js` filters community pages using `COMMUNITY_FIELD_MAP` at the top of the file (currently mapped to City/SubdivisionName values for the demo Phoenix-metro communities — for a real Phoenix-area deployment this MLS is [Arizona Regional MLS (ARMLS)](https://armls.com/), itself built on the Flexmls/Spark platform) — update that map to match your MLS's actual field names and values. Cross-check against [Spark's Standard Fields reference](https://sparkplatform.com/docs/api_services/standard_fields) for the target MLS before going live.
 
 **Compliance:** `DisplayCompliance` on each Spark listing result indicates what's allowed to be shown publicly for that listing (some brokers restrict address/photo display via reciprocity rules). The normalizer in `lib/sparkApi.js` passes this through as `displayView`/`attribution` — respect it before rendering full listing detail pages.
 

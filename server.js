@@ -98,5 +98,5 @@ app.post("/api/leads", async (req, res) => {
 
 app.listen(PORT, () => {
   const mode = process.env.SPARK_API_KEY ? "live Spark API" : "mock data (SPARK_API_KEY not set)";
-  console.log(`Terhune Realty Partners site running on http://localhost:${PORT} [${mode}]`);
+  console.log(`Relocation Expert Arizona site running on http://localhost:${PORT} [${mode}]`);
 });

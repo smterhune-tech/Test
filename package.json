@@ -1,8 +1,8 @@
 {
-  "name": "terhune-realty-partners",
+  "name": "relocation-expert-arizona",
   "version": "1.0.0",
   "private": true,
-  "description": "Terhune Realty Partners lead-gen site with Flexmls Spark API IDX integration",
+  "description": "Relocation Expert Arizona lead-gen site with Flexmls Spark API IDX integration",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

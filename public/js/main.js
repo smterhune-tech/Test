@@ -84,7 +84,7 @@
   }
 
   /* ---------- Lead capture / mock CRM sync ---------- */
-  var LEADS_KEY = "terhune_leads";
+  var LEADS_KEY = "az_relo_leads";
 
   function logLead(lead) {
     lead.capturedAt = new Date().toISOString();
@@ -221,7 +221,7 @@
         email: inputs[1].value.trim(),
         phone: inputs[2].value.trim()
       });
-      listingModalBody.innerHTML = "<h3>Request Sent!</h3><p>A Terhune Realty Partners agent will reach out shortly to schedule your showing.</p>";
+      listingModalBody.innerHTML = "<h3>Request Sent!</h3><p>A Relocation Expert Arizona agent will reach out shortly to schedule your showing.</p>";
     });
   }
 
