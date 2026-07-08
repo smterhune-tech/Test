@@ -13,9 +13,14 @@
   }
 
   function listingCardHtml(l) {
-    var photo = l.photoUrl
-      ? '<img src="' + escapeHtml(l.photoUrl) + '" alt="' + escapeHtml(l.address) + '" loading="lazy">'
-      : "Photo";
+    var photo;
+    if (l.photoUrl) {
+      photo = '<img src="' + escapeHtml(l.photoUrl) + '" alt="' + escapeHtml(l.address) + '" loading="lazy">';
+    } else if (l.illustrationUrl) {
+      photo = '<img class="listing-illustration" src="' + escapeHtml(l.illustrationUrl) + '" alt="Illustration of a home in this style" loading="lazy">';
+    } else {
+      photo = "Photo";
+    }
     return (
       '<article class="listing-card" data-id="' + escapeHtml(l.id || "") + '" data-address="' + escapeHtml(l.address) + '">' +
         '<div class="listing-photo">' + (l.badge ? '<span class="listing-badge">' + escapeHtml(l.badge) + "</span>" : "") + photo + "</div>" +
@@ -90,7 +95,19 @@
     } catch (e) {
       /* localStorage unavailable (e.g. private browsing) - lead still captured in-session */
     }
-    console.log("[CRM sync] New lead captured, auto-response queued:", lead);
+
+    fetch("/api/leads", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(lead)
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (result) {
+        console.log("[CRM sync]", result.synced ? "synced to Follow Up Boss" : "logged (not synced)", lead, result);
+      })
+      .catch(function (err) {
+        console.error("[CRM sync] lead POST failed (still saved locally in this browser):", err);
+      });
   }
 
   /* ---------- Sticky header state (for potential shrink-on-scroll styling hooks) ---------- */
@@ -287,6 +304,32 @@
     }
   });
 
+  /* ---------- Community grid (homepage teaser cards) ---------- */
+  function renderCommunityGrid() {
+    var grid = document.getElementById("community-grid");
+    if (!grid) return;
+    fetch("/api/communities")
+      .then(function (res) {
+        if (!res.ok) throw new Error("Community list failed (" + res.status + ")");
+        return res.json();
+      })
+      .then(function (communities) {
+        grid.innerHTML = communities.map(function (c) {
+          return (
+            '<a class="community-card" href="/community/' + escapeHtml(c.slug) + '">' +
+              '<span class="community-name">' + escapeHtml(c.name) + "</span>" +
+              '<span class="community-meta">Median: ' + escapeHtml(c.median) + " &middot; " + escapeHtml(c.active) + " active listings</span>" +
+            "</a>"
+          );
+        }).join("");
+      })
+      .catch(function (err) {
+        console.error("[communities] fetch failed:", err);
+        grid.innerHTML = '<p class="listing-error">Couldn&rsquo;t load neighborhoods right now.</p>';
+      });
+  }
+
   /* ---------- Init ---------- */
   renderListings();
+  renderCommunityGrid();
 })();

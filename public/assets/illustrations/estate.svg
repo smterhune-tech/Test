@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="sky4" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9e1ea"/>
+      <stop offset="1" stop-color="#b9c6d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#sky4)"/>
+  <polygon points="0,235 90,180 180,235" fill="#9fb0c2" opacity="0.6"/>
+  <polygon points="150,240 260,170 370,240" fill="#8ea0b4" opacity="0.6"/>
+  <rect x="0" y="235" width="400" height="65" fill="#a9b8c7"/>
+  <rect x="80" y="120" width="240" height="120" fill="#f4ede1"/>
+  <polygon points="60,120 200,55 340,120" fill="#0f2440"/>
+  <rect x="185" y="170" width="44" height="70" fill="#16345c"/>
+  <rect x="105" y="150" width="30" height="40" fill="#c8a862" opacity="0.8"/>
+  <rect x="145" y="150" width="30" height="40" fill="#c8a862" opacity="0.8"/>
+  <rect x="240" y="150" width="30" height="40" fill="#c8a862" opacity="0.8"/>
+  <rect x="280" y="150" width="30" height="40" fill="#c8a862" opacity="0.8"/>
+  <rect x="60" y="235" width="280" height="10" fill="#0f2440" opacity="0.2"/>
+  <rect x="0" y="0" width="400" height="300" fill="none"/>
+</svg>
