@@ -11,7 +11,21 @@
     "schools": "Zoned to Scottsdale Unified School District: Tavan Elementary, Mohave Middle School, Coronado High School.",
     "commute": "Central to the Valley via SR-101 and Scottsdale Rd. Average commute to Sky Harbor Airport: 20–25 minutes.",
     "videoTitle": "Old Town Scottsdale Neighborhood Tour",
-    "illustration": "condo-tower.svg"
+    "illustration": "condo-tower.svg",
+    "articles": [
+      {
+        "title": "Buying in Old Town Scottsdale: What First-Time Condo Buyers Should Know",
+        "date": "2026-06-02",
+        "excerpt": "HOA dues, reserve funds, and rental caps vary widely between Old Town buildings — here's what to check before you write an offer.",
+        "body": "Condo buying in Old Town Scottsdale comes with a different checklist than a single-family purchase. HOA dues here commonly run $400–$900/month depending on amenities (rooftop pools, concierge, covered parking), so factor that into your monthly payment math the same way you would a mortgage rate. Ask for the HOA's most recent reserve study — a well-funded reserve means fewer surprise special assessments down the road. Many newer buildings also cap short-term rentals or require a minimum lease term, which matters if you're weighing a future Airbnb income angle. Walk the building at two different times of day before you commit: Old Town's nightlife energy is a huge draw for some buyers and a dealbreaker for others, and street noise varies block by block. Finally, get a lender pre-approved for condo financing specifically — some lenders treat non-warrantable condo projects differently, and a building with too high a rental-to-owner ratio can complicate financing."
+      },
+      {
+        "title": "5 Best Patio Restaurants Near Old Town Scottsdale",
+        "date": "2026-05-14",
+        "excerpt": "A local's list of the patio spots worth the wait, from craft cocktail rooftops to quiet courtyard cafes.",
+        "body": "One of the best parts of living in Old Town is stepping outside for dinner without ever needing a car. The rooftop scene along 5th Avenue and Main Street gets the headlines, but some of the best patios are tucked a block or two off the main drag, away from the weekend crowds. Look for the courtyard spots near the Scottsdale Arts District for a quieter evening, or the rooftop bars near Fashion Square if you want the classic Old Town skyline view at sunset. Most patios here are shaded and misted for the summer months, so outdoor dining stays comfortable well into the warmer season. If you're touring homes in the area, we're happy to route a showing day around a lunch stop at one of our go-to spots — just ask your agent."
+      }
+    ]
   },
   {
     "slug": "arcadia",
@@ -25,7 +39,21 @@
     "schools": "Zoned to Madison School District: Madison Simis Elementary, Madison Meadows Middle School, Arcadia High School.",
     "commute": "Central location near SR-51 (Piestewa Freeway). Average commute to downtown Phoenix: 12–18 minutes.",
     "videoTitle": "Arcadia Neighborhood Tour",
-    "illustration": "bungalow.svg"
+    "illustration": "bungalow.svg",
+    "articles": [
+      {
+        "title": "Why Arcadia Homes Command a Premium in 2026",
+        "date": "2026-06-18",
+        "excerpt": "Lot size, location, and a limited supply of original citrus-grove parcels keep Arcadia pricing ahead of the rest of the Valley.",
+        "body": "Arcadia's premium comes down to scarcity as much as location. The neighborhood's original 1940s–60s citrus-grove subdivision left most lots at a quarter-acre or larger — genuinely rare for in-town Phoenix — and irrigation rights tied to those older parcels are a real selling point buyers ask about early in a tour. Teardown-and-rebuild activity has picked up over the past few years as buyers seek modern floor plans on Arcadia's oversized lots, which has pushed land value up independent of the existing structure's condition. Proximity matters too: Arcadia sits roughly equidistant from Old Town Scottsdale, Biltmore, and downtown Phoenix, which broadens the buyer pool to anyone who doesn't want to commit to a single side of the Valley. If you're comparing a fixer-upper here against a move-in-ready home in a further-out suburb, run the numbers on lot value alone before ruling it out."
+      },
+      {
+        "title": "Arcadia's Citrus Grove Heritage: A Buyer's Guide to Lot Sizes and HOA Rules",
+        "date": "2026-04-30",
+        "excerpt": "Most of Arcadia has no HOA at all — here's what that means for renovations, casitas, and mature trees on your lot.",
+        "body": "Unlike many newer Phoenix-metro subdivisions, most of core Arcadia was platted before HOAs were standard practice, so a large share of homes here have no HOA whatsoever. That gives owners more flexibility on renovations, RV parking, and guest casitas, but it also means exterior upkeep and curb appeal are entirely up to individual owners — worth walking the block at different times to get a feel for a specific street. Many lots still have mature citrus trees original to the neighborhood's grove days; a licensed arborist can tell you quickly whether a tree is healthy enough to keep landscaping plans built around it. If a casita or ADU is part of your plan, check current City of Phoenix setback and size rules before you fall in love with a specific lot, since older surveys don't always reflect updated code."
+      }
+    ]
   },
   {
     "slug": "gilbert",
@@ -39,7 +67,21 @@
     "schools": "Zoned to Gilbert Public Schools: Gilbert Elementary, Mesquite Junior High, Gilbert High School.",
     "commute": "Convenient to US-60 and Loop 202. Average commute to downtown Phoenix: 30–40 minutes.",
     "videoTitle": "Gilbert Neighborhood Tour",
-    "illustration": "ranch.svg"
+    "illustration": "ranch.svg",
+    "articles": [
+      {
+        "title": "Gilbert School Ratings: A Family Buyer's Guide",
+        "date": "2026-05-27",
+        "excerpt": "How to compare Gilbert Public Schools boundaries before you fall in love with a specific subdivision.",
+        "body": "School boundaries are one of the first things to nail down when house-hunting in Gilbert, since two homes a few streets apart can zone to different elementary schools. Gilbert Public Schools consistently rank among the strongest districts in the East Valley, but individual school ratings still vary — always confirm the exact zoned school for a specific address rather than assuming it matches a neighboring subdivision. Open enrollment is available for some Gilbert schools if you have a preference outside your default boundary, though transportation isn't guaranteed the way it is for your zoned school. If you're touring master-planned communities, ask about any school-boundary changes planned alongside new development — fast-growing areas of Gilbert occasionally get rezoned as new schools come online."
+      },
+      {
+        "title": "New Construction vs. Resale in Gilbert: 2026 Market Comparison",
+        "date": "2026-03-11",
+        "excerpt": "Builder incentives are narrowing the price gap with resale — here's how to weigh the tradeoffs for your budget.",
+        "body": "Gilbert remains one of the few Valley submarkets with meaningful new-construction inventory, and builders have been offering rate buydowns and closing-cost credits that materially close the price gap with comparable resale homes. New construction gets you a full builder warranty and modern energy-efficient systems, but often at the cost of a smaller, newer-growth lot and a longer commute to the more established parts of Gilbert. Resale homes in Gilbert's older master-planned communities tend to have larger mature landscaping and shorter drives to established shopping and dining, but may need updates to kitchens or systems depending on the build year. If a builder incentive is part of your decision, get the effective interest rate and total cost in writing — incentive structures vary a lot between builders and even between communities from the same builder."
+      }
+    ]
   },
   {
     "slug": "paradise-valley",
@@ -53,6 +95,20 @@
     "schools": "Zoned to Scottsdale Unified / Paradise Valley Unified: Kiva Elementary, Cocopah Middle School, Chaparral High School.",
     "commute": "Central to both Phoenix and Scottsdale via Lincoln Dr and SR-51. Average commute to Old Town Scottsdale: 10–15 minutes.",
     "videoTitle": "Paradise Valley Neighborhood Tour",
-    "illustration": "estate.svg"
+    "illustration": "estate.svg",
+    "articles": [
+      {
+        "title": "Paradise Valley Estate Buying: Privacy, Views, and Lot Considerations",
+        "date": "2026-06-09",
+        "excerpt": "Hillside setbacks, view easements, and well-water rights are all part of the diligence checklist at this price point.",
+        "body": "Paradise Valley's strict hillside development ordinance is a big part of what preserves the town's low-density, mountain-view character — but it also means renovation and rebuild projects face more design review than in surrounding cities. If a view is central to your decision, ask specifically about any recorded view easements or neighboring parcels with development rights that could eventually affect your sightline to Camelback or Mummy Mountain. Some of the town's larger estate lots are on private wells rather than municipal water, which is worth understanding for both cost and long-term maintenance reasons. Given the price point, a pre-offer walkthrough with your own contractor or architect is common practice here, especially on any property built before major systems (HVAC, pool equipment, roofing) would have been updated."
+      },
+      {
+        "title": "The Paradise Valley Luxury Market: 2026 Trends",
+        "date": "2026-04-22",
+        "excerpt": "Longer days-on-market at this tier is normal, not a red flag — here's how to read pricing signals correctly.",
+        "body": "Paradise Valley's median days-on-market runs well above the Valley average, which is typical for an ultra-luxury tier with a smaller buyer pool and higher price points — it's not on its own a signal that a listing is overpriced or has a hidden issue. Price-per-square-foot comparisons are less reliable here than in more homogenous submarkets, since lot size, view quality, and privacy can swing value more than interior finish level. We're seeing continued demand from both relocating buyers seeking a primary residence and out-of-state buyers purchasing a second home, which has kept the highest end of the market resilient even as financing costs shift. If you're selling in this range, professional photography and a compelling written narrative around the lot and views matter more than in a typical resale listing — buyers at this level are often making a lifestyle decision as much as a real estate one."
+      }
+    ]
   }
 ]

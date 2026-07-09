@@ -69,7 +69,7 @@
       })
       .catch(function (err) {
         console.error("[listings] fetch failed:", err);
-        setGridState(grid, '<p class="listing-error">We couldn&rsquo;t load listings right now. Please call us at (512) 555-0142.</p>');
+        setGridState(grid, '<p class="listing-error">We couldn&rsquo;t load listings right now. Please call us at (602) 910-2498.</p>');
       });
   }
 
@@ -191,7 +191,7 @@
       })
       .catch(function (err) {
         console.error("[listing detail] fetch failed:", err);
-        listingModalBody.innerHTML = '<p class="listing-error">We couldn&rsquo;t load this listing. Please call us at (512) 555-0142.</p>';
+        listingModalBody.innerHTML = '<p class="listing-error">We couldn&rsquo;t load this listing. Please call us at (602) 910-2498.</p>';
       });
   }
 
@@ -354,13 +354,71 @@
     });
   }
 
-  /* ---------- Video card click (placeholder) ---------- */
+  /* ---------- Video modal ---------- */
+  var videoModalOverlay = document.getElementById("video-modal-overlay");
+  var videoModalTitle = document.getElementById("video-modal-title");
+  var videoModalBody = document.getElementById("video-modal-body");
+  var videoModalClose = document.getElementById("video-modal-close");
+
+  function closeVideoModal() {
+    closeModal(videoModalOverlay);
+    if (videoModalBody) videoModalBody.innerHTML = "";
+  }
+
+  function openVideoModal(title, src) {
+    if (!videoModalOverlay) return;
+    videoModalTitle.textContent = title;
+    videoModalBody.innerHTML = '<p class="listing-loading">Loading&hellip;</p>';
+    openModal(videoModalOverlay);
+
+    var video = document.createElement("video");
+    video.controls = true;
+    video.autoplay = true;
+    video.muted = true; // required by browser autoplay policy; these clips are silent aerial footage anyway
+    video.loop = true;
+    video.playsInline = true;
+    video.className = "video-player";
+
+    // Offer both formats via <source> — the browser tries each in order and
+    // only fires `error` on the <video> itself once every source has failed.
+    var webmSource = document.createElement("source");
+    webmSource.src = src.replace(/\.mp4$/, ".webm");
+    webmSource.type = "video/webm";
+    var mp4Source = document.createElement("source");
+    mp4Source.src = src;
+    mp4Source.type = "video/mp4";
+    video.appendChild(webmSource);
+    video.appendChild(mp4Source);
+
+    video.addEventListener("loadedmetadata", function () {
+      videoModalBody.innerHTML = "";
+      videoModalBody.appendChild(video);
+    });
+    video.addEventListener("error", function () {
+      videoModalBody.innerHTML =
+        '<div class="video-coming-soon">' +
+          '<p><strong>Video coming soon.</strong></p>' +
+          '<p>We&rsquo;re still producing this one &mdash; check back shortly or call us at (602) 910-2498.</p>' +
+        "</div>";
+    });
+    video.load();
+  }
+
   document.addEventListener("click", function (e) {
     var thumb = e.target.closest(".video-thumb");
     if (!thumb) return;
     var title = thumb.getAttribute("data-video-title") || "this video";
+    var src = thumb.getAttribute("data-video-src");
     logLead({ type: "video_engagement", title: title });
+    if (src) openVideoModal(title, src);
   });
+
+  if (videoModalClose) videoModalClose.addEventListener("click", closeVideoModal);
+  if (videoModalOverlay) {
+    videoModalOverlay.addEventListener("click", function (e) {
+      if (e.target === videoModalOverlay) closeVideoModal();
+    });
+  }
 
   /* ---------- Exit-intent popup ---------- */
   var exitOverlay = document.getElementById("exit-modal-overlay");
@@ -389,6 +447,8 @@
     if (e.key === "Escape") {
       closeModal(exitOverlay);
       closeModal(gateOverlay);
+      closeModal(listingModalOverlay);
+      closeVideoModal();
     }
   });
 

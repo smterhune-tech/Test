@@ -88,6 +88,27 @@
     </div>
   </section>
 
+  <% if (community.articles && community.articles.length) { %>
+  <section class="section articles-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2><%= community.name %> Articles &amp; Guides</h2>
+        <p>Local buying and selling insights specific to <%= community.name %>.</p>
+      </div>
+      <div class="article-grid">
+        <% community.articles.forEach(function (article) { %>
+        <article class="article-card">
+          <h3><%= article.title %></h3>
+          <p class="article-date"><%= new Date(article.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+          <p class="article-excerpt"><%= article.excerpt %></p>
+          <p class="article-body"><%= article.body %></p>
+        </article>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
   <section class="section video-section">
     <div class="section-inner">
       <div class="section-heading">
@@ -95,7 +116,7 @@
       </div>
       <div class="video-grid">
         <div class="video-card">
-          <div class="video-thumb" data-video-title="<%= community.videoTitle %>"></div>
+          <div class="video-thumb" data-video-title="<%= community.videoTitle %>" data-video-src="/assets/videos/tour-<%= community.slug %>.mp4"></div>
           <p><%= community.videoTitle %></p>
         </div>
       </div>
@@ -175,6 +196,15 @@
   <div class="modal modal-listing" role="dialog" aria-modal="true" aria-labelledby="listing-modal-title">
     <button class="modal-close" id="listing-modal-close" aria-label="Close">&times;</button>
     <div id="listing-modal-body"><p class="listing-loading">Loading&hellip;</p></div>
+  </div>
+</div>
+
+<!-- VIDEO MODAL -->
+<div class="modal-overlay is-hidden" id="video-modal-overlay">
+  <div class="modal modal-video" role="dialog" aria-modal="true" aria-labelledby="video-modal-title">
+    <button class="modal-close" id="video-modal-close" aria-label="Close">&times;</button>
+    <h3 id="video-modal-title" class="video-modal-title"></h3>
+    <div id="video-modal-body"></div>
   </div>
 </div>
 

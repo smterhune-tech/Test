@@ -15,13 +15,25 @@ Serves the site + API at `http://localhost:3000`. Without `SPARK_API_KEY` / `FUB
 
 - `public/` — static assets served as-is: `index.html`, `css/`, `js/`, `assets/illustrations/` (only this directory is web-accessible; `server.js`, `lib/`, and `data/` are not)
 - `views/community.ejs` — single template for all community/neighborhood pages, rendered by `GET /community/:slug`
-- `data/communities.json` — content for every community page (stats, about copy, schools, commute) **and** the homepage's community teaser cards, which fetch from `/api/communities` so they can never drift out of sync with the detail pages. Edit this file to add/change a neighborhood — no HTML editing required.
+- `data/communities.json` — content for every community page (stats, about copy, schools, commute, articles) **and** the homepage's community teaser cards, which fetch from `/api/communities` so they can never drift out of sync with the detail pages. Edit this file to add/change a neighborhood or its articles — no HTML editing required.
 - `data/listings.json` — mock listing inventory used when `SPARK_API_KEY` is unset. Edit this file to change the demo listings.
 - `lib/sparkApi.js`, `lib/followUpBoss.js`, `lib/leadLog.js` — backend integrations, detailed below.
 
 ## Listing photos
 
 Mock listings have no real photo — rather than hotlinking stock photography of actual houses to a fictional address (which would misrepresent a real property as a fake listing), each community gets a distinct hand-built SVG illustration (`public/assets/illustrations/`) matching its architecture style. Once a real Spark API key is connected, real MLS photos take over automatically (see `photoUrl` vs. `illustrationUrl` in `lib/sparkApi.js` — the illustration is only ever a fallback, never a substitute for an available real photo).
+
+The homepage hero background works the same way: `public/css/styles.css` layers `/assets/hero-photo.jpg` over `/assets/hero-bg.svg`, so dropping a real photo in at that exact path takes over automatically with no code changes, and the illustration remains the fallback if it's ever removed.
+
+## Videos
+
+Every `.video-thumb` element opens a modal player driven by its `data-video-src` attribute (the `.mp4` path — a matching `.webm` at the same path is tried first for broader codec support, then the `.mp4` as fallback; if neither loads, a "video coming soon" message shows instead of a broken player). Video files live in `public/assets/videos/`, named to match each spot:
+
+- `moving-to-phoenix-2026.{mp4,webm}` — homepage "Moving to Phoenix: 2026 Buyer's Guide"
+- `phoenix-market-update-2026-07.{mp4,webm}` — homepage "Phoenix Market Update — July 2026"
+- `tour-<slug>.{mp4,webm}` — homepage's Arcadia tour card **and** each community page's neighborhood-tour video share this same path per community (e.g. `tour-arcadia.mp4` covers both), so one file update covers both spots.
+
+To add or replace a video: drop both a `.mp4` (H.264, universally supported) and a `.webm` (VP9) at the matching path — `ffmpeg -i source.mov -c:v libx264 -crf 23 -an -movflags +faststart output.mp4` and `-c:v libvpx-vp9 -crf 32 -b:v 0 -an output.webm` are reasonable defaults for short silent aerial/b-roll clips. Only the `.mp4` is required for real-world browsers; the `.webm` is optional but recommended for broader compatibility and was needed to verify playback in this project's own headless-Chromium test environment, which lacks H.264 decode support.
 
 ## Connect a real Flexmls (Spark API) feed
 
