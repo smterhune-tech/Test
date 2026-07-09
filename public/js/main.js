@@ -477,7 +477,22 @@
       });
   }
 
+  /* ---------- Video thumbnail posters ---------- */
+  function loadVideoPosters() {
+    document.querySelectorAll(".video-thumb[data-video-src]").forEach(function (thumb) {
+      var src = thumb.getAttribute("data-video-src");
+      var posterUrl = src.replace(/\.mp4$/, "-poster.jpg");
+      var img = new Image();
+      img.onload = function () {
+        thumb.style.backgroundImage = "url('" + posterUrl + "')";
+      };
+      // no onerror handler needed: thumb keeps its CSS gradient background if the poster 404s
+      img.src = posterUrl;
+    });
+  }
+
   /* ---------- Init ---------- */
   renderListings();
   renderCommunityGrid();
+  loadVideoPosters();
 })();
