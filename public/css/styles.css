@@ -127,6 +127,19 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: #fff;
   padding: 80px 20px 64px;
 }
+/* Full-screen background video, sitting above the CSS photo/illustration
+   fallback and below the scrim. If the video fails to load or play for
+   any reason, the .hero background-image chain still shows through since
+   it's a separate rendering layer. Poster frame paints instantly so there
+   is always something on screen before the video itself is ready. */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
 /* Scrim between the background art and content so hero copy stays
    readable regardless of how busy the underlying image is. */
 .hero-overlay {
@@ -529,6 +542,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   .header-actions .btn-primary { display: none; }
   .mobile-sticky-cta { display: flex; }
   body { padding-bottom: 64px; }
+
+  /* Skip the video on mobile to save bandwidth/battery — the .hero
+     background-image (photo, then illustration) fallback chain shows
+     instead, same static image the video's poster frame uses. */
+  .hero-video { display: none; }
 
   .site-header.nav-open .main-nav {
     display: flex;
