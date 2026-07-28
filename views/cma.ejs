@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>CMA Report for <%= cma.subject.address %> | Relocation Expert Arizona</title>
+<meta name="description" content="Comparative Market Analysis for <%= cma.subject.address %>, prepared by Relocation Expert Arizona.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>&#127968;</text></svg>">
+<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="/index.html" class="logo">Relocation <span>Expert Arizona</span></a>
+    <nav class="main-nav" id="main-nav">
+      <a href="/index.html#search">Buy</a>
+      <a href="/index.html#communities">Communities</a>
+      <a href="/index.html#valuation">Sell / Home Value</a>
+      <a href="/index.html#video">Market Updates</a>
+      <a href="/index.html#contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="tel:+16029102498" class="phone-link">(602) 910-2498</a>
+      <a href="/index.html#valuation" class="btn btn-primary">Get My Home Value</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="cma-report">
+
+  <!-- COVER / SUBJECT -->
+  <section class="cma-cover">
+    <div class="section-inner cma-cover-inner">
+      <div class="cma-cover-copy">
+        <p class="cma-kicker">Comparative Market Analysis</p>
+        <h1><%= cma.subject.address %></h1>
+        <p class="cma-cover-sub"><%= cma.subject.community %>, Arizona</p>
+        <ul class="cma-cover-meta">
+          <% if (cma.subject.name) { %><li>Prepared for <strong><%= cma.subject.name %></strong></li><% } %>
+          <li>Prepared by <strong>Relocation Expert Arizona</strong></li>
+          <li><%= new Date(cma.generatedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></li>
+        </ul>
+      </div>
+      <% if (cma.subject.illustrationUrl) { %>
+      <div class="cma-cover-art">
+        <img src="<%= cma.subject.illustrationUrl %>" alt="Representative home style for <%= cma.subject.community %>" loading="lazy">
+        <p class="cma-art-caption">Representative style illustration &mdash; not a photo of the subject property</p>
+      </div>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- SUBJECT PROPERTY DETAILS -->
+  <section class="section cma-subject-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Subject Property</h2>
+        <p>Estimated details based on the address provided. A licensed agent will confirm exact specs during a walkthrough.</p>
+      </div>
+      <div class="authority-inner cma-subject-stats">
+        <div class="authority-stat"><strong><%= cma.subject.beds %></strong><span>Bedrooms</span></div>
+        <div class="authority-stat"><strong><%= cma.subject.baths %></strong><span>Bathrooms</span></div>
+        <div class="authority-stat"><strong><%= cma.subject.sqft.toLocaleString() %></strong><span>Square feet</span></div>
+        <div class="authority-stat"><strong><%= cma.subject.community %></strong><span>Community</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARKET SUMMARY -->
+  <section class="section cma-market-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Market Summary</h2>
+        <p><%= cma.subject.community %> comps &mdash; <%= cma.activeComps.length %> active listing<%= cma.activeComps.length === 1 ? '' : 's' %>, <%= cma.soldComps.length %> recent sale<%= cma.soldComps.length === 1 ? '' : 's' %>.</p>
+      </div>
+      <div class="authority-inner cma-market-stats">
+        <div class="authority-stat"><strong><%= cma.stats.avgActivePpsf ? '$' + Math.round(cma.stats.avgActivePpsf).toLocaleString() : '—' %></strong><span>Avg $/sqft &mdash; active</span></div>
+        <div class="authority-stat"><strong><%= cma.stats.avgSoldPpsf ? '$' + Math.round(cma.stats.avgSoldPpsf).toLocaleString() : '—' %></strong><span>Avg $/sqft &mdash; sold</span></div>
+        <div class="authority-stat"><strong><%= cma.stats.avgDom ? Math.round(cma.stats.avgDom) : '—' %></strong><span>Avg days on market</span></div>
+        <div class="authority-stat"><strong><%= cma.stats.avgListToSale ? Math.round(cma.stats.avgListToSale * 100) + '%' : '—' %></strong><span>Avg list-to-sale ratio</span></div>
+      </div>
+
+      <% if (cma.activeComps.length || cma.soldComps.length) { %>
+      <div class="cma-chart">
+        <p class="cma-chart-title">Price per square foot by comp</p>
+        <div class="cma-chart-bars">
+          <%
+            var allPpsf = cma.activeComps.map(function (c) { return c.pricePerSqft; })
+              .concat(cma.soldComps.map(function (c) { return c.pricePerSqft; }))
+              .filter(function (v) { return v; });
+            var maxPpsf = allPpsf.length ? Math.max.apply(null, allPpsf) : 1;
+          %>
+          <% cma.activeComps.forEach(function (c) { %>
+          <div class="cma-bar-row">
+            <span class="cma-bar-label"><%= c.address.split(',')[0] %></span>
+            <div class="cma-bar-track"><div class="cma-bar cma-bar-active" style="width: <%= Math.round((c.pricePerSqft / maxPpsf) * 100) %>%"></div></div>
+            <span class="cma-bar-value">$<%= c.pricePerSqft.toLocaleString() %></span>
+          </div>
+          <% }); %>
+          <% cma.soldComps.forEach(function (c) { %>
+          <div class="cma-bar-row">
+            <span class="cma-bar-label"><%= c.address.split(',')[0] %></span>
+            <div class="cma-bar-track"><div class="cma-bar cma-bar-sold" style="width: <%= Math.round((c.pricePerSqft / maxPpsf) * 100) %>%"></div></div>
+            <span class="cma-bar-value">$<%= c.pricePerSqft.toLocaleString() %></span>
+          </div>
+          <% }); %>
+        </div>
+        <div class="cma-chart-legend">
+          <span><i class="cma-swatch cma-swatch-active"></i> Active listing</span>
+          <span><i class="cma-swatch cma-swatch-sold"></i> Sold comp</span>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </section>
+
+  <!-- SCHEMATIC MAP -->
+  <% if (cma.activeComps.length || cma.soldComps.length) { %>
+  <section class="section cma-map-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Comp Locations</h2>
+        <p>Schematic layout &mdash; relative positions only, not to scale or true geography.</p>
+      </div>
+      <div class="cma-map">
+        <div class="cma-map-pin cma-map-pin-subject" style="left: 50%; top: 50%;">
+          <span class="cma-pin-dot"></span>
+          <span class="cma-pin-label">Subject</span>
+        </div>
+        <%
+          var mapComps = cma.activeComps.map(function (c) { return { label: c.address.split(',')[0], kind: 'active' }; })
+            .concat(cma.soldComps.map(function (c) { return { label: c.address.split(',')[0], kind: 'sold' }; }));
+          var angleStep = 360 / Math.max(mapComps.length, 1);
+        %>
+        <% mapComps.forEach(function (c, i) {
+          var angle = (angleStep * i) * (Math.PI / 180);
+          var radius = 38;
+          var left = 50 + radius * Math.cos(angle);
+          var top = 50 + radius * Math.sin(angle);
+        %>
+        <div class="cma-map-pin cma-map-pin-<%= c.kind %>" style="left: <%= left.toFixed(1) %>%; top: <%= top.toFixed(1) %>%;">
+          <span class="cma-pin-dot"></span>
+          <span class="cma-pin-label"><%= c.label %></span>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- ACTIVE COMPS TABLE -->
+  <% if (cma.activeComps.length) { %>
+  <section class="section cma-table-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Active Comparable Listings</h2>
+        <p>Current competition your buyer will be weighing this home against.</p>
+      </div>
+      <div class="cma-table-wrap">
+        <table class="cma-table">
+          <thead>
+            <tr><th>Address</th><th>Beds</th><th>Baths</th><th>Sqft</th><th>List Price</th><th>$/Sqft</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <% cma.activeComps.forEach(function (c) { %>
+            <tr>
+              <td><%= c.address %></td>
+              <td><%= c.beds %></td>
+              <td><%= c.baths %></td>
+              <td><%= c.sqft.toLocaleString() %></td>
+              <td>$<%= c.price.toLocaleString() %></td>
+              <td>$<%= c.pricePerSqft.toLocaleString() %></td>
+              <td><span class="cma-status cma-status-active">Active<%= c.badge ? ' · ' + c.badge : '' %></span></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- SOLD COMPS TABLE -->
+  <% if (cma.soldComps.length) { %>
+  <section class="section cma-table-section cma-table-section-alt">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Recently Sold Comparables</h2>
+        <p>The strongest signal for what this home will actually sell for.</p>
+      </div>
+      <div class="cma-table-wrap">
+        <table class="cma-table">
+          <thead>
+            <tr><th>Address</th><th>Beds</th><th>Baths</th><th>Sqft</th><th>List Price</th><th>Sold Price</th><th>$/Sqft</th><th>DOM</th><th>Sold Date</th></tr>
+          </thead>
+          <tbody>
+            <% cma.soldComps.forEach(function (c) { %>
+            <tr>
+              <td><%= c.address %></td>
+              <td><%= c.beds %></td>
+              <td><%= c.baths %></td>
+              <td><%= c.sqft.toLocaleString() %></td>
+              <td>$<%= c.listPrice.toLocaleString() %></td>
+              <td>$<%= c.soldPrice.toLocaleString() %></td>
+              <td>$<%= c.pricePerSqft.toLocaleString() %></td>
+              <td><%= c.dom %></td>
+              <td><%= new Date(c.soldDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+            </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- PER-COMP DETAIL CARDS -->
+  <% if (cma.activeComps.length || cma.soldComps.length) { %>
+  <section class="section cma-detail-section">
+    <div class="section-inner">
+      <div class="section-heading">
+        <h2>Comp Details</h2>
+      </div>
+      <div class="listing-grid cma-detail-grid">
+        <% cma.activeComps.forEach(function (c) { %>
+        <article class="listing-card cma-detail-card">
+          <div class="listing-photo">
+            <span class="listing-badge cma-status-active">Active</span>
+            <% if (c.illustrationUrl) { %><img class="listing-illustration" src="<%= c.illustrationUrl %>" alt="Illustration of a home in this style" loading="lazy"><% } %>
+          </div>
+          <div class="listing-body">
+            <div class="listing-price">$<%= c.price.toLocaleString() %></div>
+            <div class="listing-address"><%= c.address %></div>
+            <div class="listing-meta"><%= c.beds %> bd &middot; <%= c.baths %> ba &middot; <%= c.sqft.toLocaleString() %> sqft &middot; $<%= c.pricePerSqft.toLocaleString() %>/sqft</div>
+          </div>
+        </article>
+        <% }); %>
+        <% cma.soldComps.forEach(function (c) { %>
+        <article class="listing-card cma-detail-card">
+          <div class="listing-photo">
+            <span class="listing-badge cma-status-sold">Sold</span>
+            <% if (c.illustrationUrl) { %><img class="listing-illustration" src="<%= c.illustrationUrl %>" alt="Illustration of a home in this style" loading="lazy"><% } %>
+          </div>
+          <div class="listing-body">
+            <div class="listing-price">$<%= c.soldPrice.toLocaleString() %></div>
+            <div class="listing-address"><%= c.address %></div>
+            <div class="listing-meta"><%= c.beds %> bd &middot; <%= c.baths %> ba &middot; <%= c.sqft.toLocaleString() %> sqft &middot; $<%= c.pricePerSqft.toLocaleString() %>/sqft</div>
+            <div class="listing-meta">Sold <%= new Date(c.soldDate).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %> &middot; <%= c.dom %> DOM</div>
+          </div>
+        </article>
+        <% }); %>
+      </div>
+    </div>
+  </section>
+  <% } %>
+
+  <!-- PRICING RECOMMENDATION -->
+  <section class="section cma-pricing-section" id="pricing">
+    <div class="section-inner cma-pricing-inner">
+      <div class="cma-pricing-copy">
+        <h2>Suggested List Price</h2>
+        <p>Based on a blend of active competition and recent sold comps in <%= cma.subject.community %>, weighted toward sold data as the stronger predictor of achievable price.</p>
+        <p class="cma-pricing-microcopy">This is a data-driven starting point, not a formal appraisal &mdash; a Relocation Expert Arizona agent will refine it with a walkthrough and current showing feedback before you list.</p>
+      </div>
+      <div class="cma-pricing-card">
+        <span class="cma-pricing-label">Recommended Range</span>
+        <span class="cma-pricing-range">
+          <% if (cma.pricing.suggestedLow && cma.pricing.suggestedHigh) { %>
+            $<%= cma.pricing.suggestedLow.toLocaleString() %> &ndash; $<%= cma.pricing.suggestedHigh.toLocaleString() %>
+          <% } else { %>
+            Not enough comp data yet
+          <% } %>
+        </span>
+        <% if (cma.pricing.pointEstimate) { %>
+        <span class="cma-pricing-point">Point estimate: $<%= cma.pricing.pointEstimate.toLocaleString() %></span>
+        <% } %>
+        <a href="/index.html#contact" class="btn btn-primary">Talk to an Agent About Listing</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>Relocation Expert Arizona</h4>
+      <p>8360 E Raintree Dr #225<br>Scottsdale, AZ 85255</p>
+      <p><a href="tel:+16029102498">(602) 910-2498</a><br><a href="mailto:hello@relocationexpertarizona.com">hello@relocationexpertarizona.com</a></p>
+    </div>
+    <div class="footer-col">
+      <h4>Communities</h4>
+      <ul>
+        <% allCommunities.forEach(function (c) { %>
+        <li><a href="/community/<%= c.slug %>"><%= c.name %></a></li>
+        <% }); %>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="/index.html#video">Market Updates</a></li>
+        <li><a href="/index.html#valuation">Home Value</a></li>
+        <li><a href="/index.html#search">Search Homes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <ul class="social-links">
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">YouTube</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Relocation Expert Arizona. Equal Housing Opportunity. Information deemed reliable but not guaranteed. IDX/MLS data provided for consumers' personal, non-commercial use. This report uses automated estimates and is not a formal appraisal.</p>
+  </div>
+</footer>
+
+</body>
+</html>

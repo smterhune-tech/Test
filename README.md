@@ -15,9 +15,12 @@ Serves the site + API at `http://localhost:3000`. Without `SPARK_API_KEY` / `FUB
 
 - `public/` — static assets served as-is: `index.html`, `css/`, `js/`, `assets/illustrations/` (only this directory is web-accessible; `server.js`, `lib/`, and `data/` are not)
 - `views/community.ejs` — single template for all community/neighborhood pages, rendered by `GET /community/:slug`
+- `views/cma.ejs` — the CMA report page, rendered by `GET /cma`
 - `data/communities.json` — content for every community page (stats, about copy, schools, commute, articles) **and** the homepage's community teaser cards, which fetch from `/api/communities` so they can never drift out of sync with the detail pages. Edit this file to add/change a neighborhood or its articles — no HTML editing required.
 - `data/listings.json` — mock listing inventory used when `SPARK_API_KEY` is unset. Edit this file to change the demo listings.
+- `data/soldComps.json` — mock sold-comp data (list/sold price, DOM, sold date) that the CMA report uses alongside `listings.json`'s active listings. Real deployments would source this from MLS sold data instead.
 - `lib/sparkApi.js`, `lib/followUpBoss.js`, `lib/leadLog.js` — backend integrations, detailed below.
+- `lib/cma.js` — CMA report builder, detailed below.
 
 ## Listing photos
 
@@ -46,6 +49,16 @@ To add or replace a video: drop both a `.mp4` (H.264, universally supported) and
 **Compliance:** `DisplayCompliance` on each Spark listing result indicates what's allowed to be shown publicly for that listing (some brokers restrict address/photo display via reciprocity rules). The normalizer in `lib/sparkApi.js` passes this through as `displayView`/`attribution` — respect it before rendering full listing detail pages.
 
 **Network note:** this integration could not be live-tested end to end during development — the sandbox it was built in blocks outbound requests to `sparkapi.com`. The request/response handling follows Spark's documented API shape and was verified against a local mock server matching that shape; verify against the real feed once deployed somewhere with normal internet egress.
+
+## CMA reports
+
+`GET /cma?address=...&name=...&email=...&phone=...` renders a full Comparative Market Analysis report, generated on the fly by `lib/cma.js`. The home-valuation form's success step (`#valuation-step-success` in `public/index.html`) links here — it's the "full report" the form promises to follow up with, made real instead of a placeholder message.
+
+The report mirrors the standard CMA deliverable: cover with subject property and agent branding, subject property details, a market summary (avg $/sqft for active vs. sold comps, avg days on market, avg list-to-sale ratio) with a $/sqft-per-comp bar chart, a schematic (non-geographic) comp-location diagram, active and sold comps tables, per-comp detail cards, and a suggested list price range.
+
+**How it works without an MLS lookup for the subject property:** the valuation form only collects address/name/email/phone, so `lib/cma.js` matches the address to one of the four demo communities (by name/city match, falling back to a deterministic hash of the address so the same address always lands on the same community) and derives plausible subject beds/baths/sqft the same way `estimateValue()` in `public/js/main.js` derives its ballpark price — a deterministic hash of the address string, not a real property lookup. Comps come from `data/listings.json` (active) and `data/soldComps.json` (sold), filtered to the matched community. The suggested price blends avg sold $/sqft (60%) and avg active $/sqft (40%) against the subject's estimated square footage.
+
+**Going to a real deployment:** swap `estimateSubjectFacts()` in `lib/cma.js` for a real subject-property lookup (Spark API once an address-level endpoint is wired up, or manual agent entry) and point `data/soldComps.json` at real MLS sold data — the rest of the report (comp matching, stats, tables, pricing math) doesn't need to change.
 
 ## Connect a real Follow Up Boss CRM webhook
 

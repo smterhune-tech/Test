@@ -336,6 +336,14 @@
       document.getElementById("valuation-result-text").textContent =
         "Estimated value for " + address + ": " + formatPrice(low) + " – " + formatPrice(high) + ".";
 
+      var cmaLink = document.getElementById("valuation-cma-link");
+      if (cmaLink) {
+        var cmaParams = ["address", "name", "email", "phone"].map(function (key) {
+          return key + "=" + encodeURIComponent({ address: address, name: name, email: email, phone: phone }[key]);
+        }).join("&");
+        cmaLink.href = "/cma?" + cmaParams;
+      }
+
       step2.classList.add("is-hidden");
       stepSuccess.classList.remove("is-hidden");
     });

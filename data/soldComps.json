@@ -1,0 +1,14 @@
+[
+  { "id": "sold-1", "address": "7015 E 5th Ave #310, Scottsdale, AZ", "community": "old-town-scottsdale", "beds": 2, "baths": 2, "sqft": 1620, "listPrice": 749000, "soldPrice": 738000, "soldDate": "2026-06-12", "dom": 24 },
+  { "id": "sold-2", "address": "4230 N Drinkwater Blvd #6, Scottsdale, AZ", "community": "old-town-scottsdale", "beds": 3, "baths": 2, "sqft": 1910, "listPrice": 825000, "soldPrice": 812500, "soldDate": "2026-05-28", "dom": 19 },
+  { "id": "sold-3", "address": "3800 N Miller Rd #212, Scottsdale, AZ", "community": "old-town-scottsdale", "beds": 2, "baths": 2, "sqft": 1480, "listPrice": 675000, "soldPrice": 668000, "soldDate": "2026-04-30", "dom": 33 },
+  { "id": "sold-4", "address": "5230 E Calle Del Norte, Phoenix, AZ", "community": "arcadia", "beds": 3, "baths": 2, "sqft": 2050, "listPrice": 1075000, "soldPrice": 1060000, "soldDate": "2026-06-20", "dom": 15 },
+  { "id": "sold-5", "address": "4855 E Roma Ave, Phoenix, AZ", "community": "arcadia", "beds": 4, "baths": 3, "sqft": 2560, "listPrice": 1295000, "soldPrice": 1272000, "soldDate": "2026-05-09", "dom": 21 },
+  { "id": "sold-6", "address": "6120 E Montecito Ave, Phoenix, AZ", "community": "arcadia", "beds": 4, "baths": 3, "sqft": 2390, "listPrice": 1150000, "soldPrice": 1149000, "soldDate": "2026-03-15", "dom": 12 },
+  { "id": "sold-7", "address": "1187 E Juniper Ave, Gilbert, AZ", "community": "gilbert", "beds": 3, "baths": 2, "sqft": 1980, "listPrice": 499000, "soldPrice": 493000, "soldDate": "2026-06-05", "dom": 18 },
+  { "id": "sold-8", "address": "2340 E Palo Verde St, Gilbert, AZ", "community": "gilbert", "beds": 4, "baths": 3, "sqft": 2460, "listPrice": 559900, "soldPrice": 555000, "soldDate": "2026-05-22", "dom": 27 },
+  { "id": "sold-9", "address": "1042 S Val Vista Dr, Gilbert, AZ", "community": "gilbert", "beds": 3, "baths": 2, "sqft": 2120, "listPrice": 519000, "soldPrice": 511500, "soldDate": "2026-04-11", "dom": 30 },
+  { "id": "sold-10", "address": "6301 N Invergordon Rd, Paradise Valley, AZ", "community": "paradise-valley", "beds": 4, "baths": 4, "sqft": 4250, "listPrice": 2995000, "soldPrice": 2900000, "soldDate": "2026-06-01", "dom": 41 },
+  { "id": "sold-11", "address": "5240 E Doubletree Ranch Rd, Paradise Valley, AZ", "community": "paradise-valley", "beds": 5, "baths": 5, "sqft": 4980, "listPrice": 3395000, "soldPrice": 3300000, "soldDate": "2026-04-19", "dom": 55 },
+  { "id": "sold-12", "address": "5020 E Foothill Dr, Paradise Valley, AZ", "community": "paradise-valley", "beds": 6, "baths": 6, "sqft": 6050, "listPrice": 4250000, "soldPrice": 4075000, "soldDate": "2026-02-27", "dom": 63 }
+]

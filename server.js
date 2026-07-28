@@ -4,6 +4,7 @@ const path = require("path");
 const { searchListings, getListing } = require("./lib/sparkApi");
 const followUpBoss = require("./lib/followUpBoss");
 const leadLog = require("./lib/leadLog");
+const { buildCma } = require("./lib/cma");
 const communities = require("./data/communities.json");
 
 const app = express();
@@ -33,6 +34,29 @@ function toPositiveInt(value) {
   const n = Number.parseInt(value, 10);
   return Number.isFinite(n) && n > 0 ? n : undefined;
 }
+
+// Full CMA report, generated from the address/name/email/phone captured by
+// the home-valuation form ("the full report" it promises to follow up
+// with). No address means there's nothing to build a report for — send the
+// visitor back to the form instead of rendering an empty report.
+app.get("/cma", (req, res) => {
+  const address = (req.query.address || "").trim();
+  if (!address) return res.redirect("/index.html#valuation");
+
+  try {
+    const cma = buildCma({
+      address,
+      name: req.query.name,
+      email: req.query.email,
+      phone: req.query.phone,
+      community: req.query.community
+    });
+    res.render("cma", { cma, allCommunities: communities });
+  } catch (err) {
+    console.error("[/cma] error:", err.message);
+    res.status(400).send("Couldn't generate a CMA report for that address.");
+  }
+});
 
 app.get("/api/listings", async (req, res) => {
   try {
