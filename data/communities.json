@@ -110,5 +110,33 @@
         "body": "Paradise Valley's median days-on-market runs well above the Valley average, which is typical for an ultra-luxury tier with a smaller buyer pool and higher price points — it's not on its own a signal that a listing is overpriced or has a hidden issue. Price-per-square-foot comparisons are less reliable here than in more homogenous submarkets, since lot size, view quality, and privacy can swing value more than interior finish level. We're seeing continued demand from both relocating buyers seeking a primary residence and out-of-state buyers purchasing a second home, which has kept the highest end of the market resilient even as financing costs shift. If you're selling in this range, professional photography and a compelling written narrative around the lot and views matter more than in a typical resale listing — buyers at this level are often making a lifestyle decision as much as a real estate one."
       }
     ]
+  },
+  {
+    "slug": "cave-creek",
+    "name": "Cave Creek",
+    "sub": "Desert-foothill horse properties and a walkable Western downtown at the edge of Tonto National Forest.",
+    "median": "$895K",
+    "active": "19",
+    "dom": "45",
+    "walk": "2/10",
+    "about": "Cave Creek sits at the Valley's northern edge, where large-lot horse properties meet a compact, boot-scoot downtown of galleries, saloons, and trailheads. It's the pick for buyers who want acreage, dark skies, and Sonoran desert views without leaving easy reach of Phoenix and Scottsdale.",
+    "schools": "Zoned to Cave Creek Unified School District: Black Mountain Elementary, Sonoran Trails Middle School, Cactus Shadows High School.",
+    "commute": "Reached via Cave Creek Rd and Carefree Hwy. Average commute to downtown Phoenix: 35–45 minutes.",
+    "videoTitle": "Cave Creek Neighborhood Tour",
+    "illustration": "desert-ranch.svg",
+    "articles": [
+      {
+        "title": "Buying a Horse Property in Cave Creek: What to Check Before You Offer",
+        "date": "2026-06-24",
+        "excerpt": "Well water, septic capacity, and equestrian zoning all vary lot to lot — here's the diligence checklist for acreage buyers.",
+        "body": "Most of Cave Creek's larger parcels run on private well and septic rather than municipal service, so a well-flow test and septic inspection belong in your due diligence alongside the standard home inspection — well output that's fine for a small home can fall short once you add barn wash racks or irrigated turnout. Maricopa County zoning for horse-keeping varies by parcel size and specific zoning designation, so confirm the number of horses allowed and any setback requirements before assuming a barn or arena can go where you're picturing it. Existing improvements (arenas, round pens, hay barns) are a real value-add, but get their condition and any required permits verified rather than taken at face value from listing photos. Also ask about irrigation rights and shared access easements, which are more common on Cave Creek acreage than in denser Valley submarkets and can affect both usability and resale."
+      },
+      {
+        "title": "Cave Creek's Downtown Scene: What Living Near It Actually Means",
+        "date": "2026-05-02",
+        "excerpt": "Western storefronts and weekend crowds are part of the charm — here's how proximity to downtown affects day-to-day living and noise.",
+        "body": "Cave Creek's compact downtown — a stretch of Western-storefront saloons, galleries, and trailhead access — draws weekend crowds that add real energy but also real noise and traffic on Friday and Saturday nights, worth experiencing in person before you commit to a close-in property. Homes a mile or two out trade a short walk to dinner for quieter evenings and more usable acreage, which is the tradeoff most buyers end up weighing here. The Spur Cross and Go John trailheads sit right at the edge of town, so even properties a short drive from downtown often back up to open desert with direct trail access. If dark skies and low light pollution matter to you, ask specifically about any nearby development plans — Cave Creek's rural character is part of its draw, but a few pockets closer to Carefree Hwy have seen new subdivision activity in recent years."
+      }
+    ]
   }
 ]

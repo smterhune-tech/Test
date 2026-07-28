@@ -10,5 +10,8 @@
   { "id": "sold-9", "address": "1042 S Val Vista Dr, Gilbert, AZ", "community": "gilbert", "beds": 3, "baths": 2, "sqft": 2120, "listPrice": 519000, "soldPrice": 511500, "soldDate": "2026-04-11", "dom": 30 },
   { "id": "sold-10", "address": "6301 N Invergordon Rd, Paradise Valley, AZ", "community": "paradise-valley", "beds": 4, "baths": 4, "sqft": 4250, "listPrice": 2995000, "soldPrice": 2900000, "soldDate": "2026-06-01", "dom": 41 },
   { "id": "sold-11", "address": "5240 E Doubletree Ranch Rd, Paradise Valley, AZ", "community": "paradise-valley", "beds": 5, "baths": 5, "sqft": 4980, "listPrice": 3395000, "soldPrice": 3300000, "soldDate": "2026-04-19", "dom": 55 },
-  { "id": "sold-12", "address": "5020 E Foothill Dr, Paradise Valley, AZ", "community": "paradise-valley", "beds": 6, "baths": 6, "sqft": 6050, "listPrice": 4250000, "soldPrice": 4075000, "soldDate": "2026-02-27", "dom": 63 }
+  { "id": "sold-12", "address": "5020 E Foothill Dr, Paradise Valley, AZ", "community": "paradise-valley", "beds": 6, "baths": 6, "sqft": 6050, "listPrice": 4250000, "soldPrice": 4075000, "soldDate": "2026-02-27", "dom": 63 },
+  { "id": "sold-13", "address": "7130 E Cave Creek Rd, Cave Creek, AZ", "community": "cave-creek", "beds": 3, "baths": 2, "sqft": 2020, "listPrice": 699000, "soldPrice": 685000, "soldDate": "2026-06-08", "dom": 38 },
+  { "id": "sold-14", "address": "6845 E Lone Mountain Rd, Cave Creek, AZ", "community": "cave-creek", "beds": 4, "baths": 3, "sqft": 3120, "listPrice": 1050000, "soldPrice": 1015000, "soldDate": "2026-05-15", "dom": 47 },
+  { "id": "sold-15", "address": "38610 N Old Stage Rd, Cave Creek, AZ", "community": "cave-creek", "beds": 4, "baths": 3, "sqft": 2960, "listPrice": 925000, "soldPrice": 902000, "soldDate": "2026-03-30", "dom": 41 }
 ]

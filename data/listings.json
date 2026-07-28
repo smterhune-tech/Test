@@ -8,5 +8,8 @@
   { "id": "mock-7", "price": 1150000, "address": "4890 E Montecito Ave, Phoenix, AZ", "beds": 4, "baths": 3, "sqft": 2450, "community": "arcadia", "badge": null },
   { "id": "mock-8", "price": 2950000, "address": "6407 N Invergordon Rd, Paradise Valley, AZ", "beds": 4, "baths": 4, "sqft": 4400, "community": "paradise-valley", "badge": "New" },
   { "id": "mock-9", "price": 1280000, "address": "6218 E Highland Ave, Phoenix, AZ", "beds": 4, "baths": 3, "sqft": 2680, "community": "arcadia", "badge": null },
-  { "id": "mock-10", "price": 4100000, "address": "5108 E Foothill Dr, Paradise Valley, AZ", "beds": 6, "baths": 6, "sqft": 6200, "community": "paradise-valley", "badge": null }
+  { "id": "mock-10", "price": 4100000, "address": "5108 E Foothill Dr, Paradise Valley, AZ", "beds": 6, "baths": 6, "sqft": 6200, "community": "paradise-valley", "badge": null },
+  { "id": "mock-11", "price": 925000, "address": "6520 E Lone Mountain Rd, Cave Creek, AZ", "beds": 4, "baths": 3, "sqft": 2850, "community": "cave-creek", "badge": "New" },
+  { "id": "mock-12", "price": 1195000, "address": "38215 N 40th St, Cave Creek, AZ", "beds": 4, "baths": 3, "sqft": 3400, "community": "cave-creek", "badge": null },
+  { "id": "mock-13", "price": 749000, "address": "28912 N Sky Ranch Dr, Cave Creek, AZ", "beds": 3, "baths": 2, "sqft": 2180, "community": "cave-creek", "badge": null }
 ]

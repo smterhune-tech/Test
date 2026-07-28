@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="sky5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d9e1ea"/>
+      <stop offset="1" stop-color="#b9c6d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#sky5)"/>
+  <polygon points="0,230 110,165 230,230" fill="#b98d63" opacity="0.55"/>
+  <polygon points="180,235 300,150 400,235" fill="#a67a53" opacity="0.55"/>
+  <rect x="0" y="230" width="400" height="70" fill="#d9c6a0"/>
+
+  <!-- saguaro cactus -->
+  <rect x="330" y="120" width="16" height="110" rx="8" fill="#5b7a5b"/>
+  <rect x="308" y="150" width="14" height="46" rx="7" fill="#5b7a5b"/>
+  <rect x="308" y="150" width="14" height="14" rx="7" fill="#5b7a5b"/>
+  <rect x="356" y="140" width="14" height="56" rx="7" fill="#5b7a5b"/>
+  <rect x="356" y="140" width="14" height="14" rx="7" fill="#5b7a5b"/>
+
+  <!-- single-story territorial ranch house, flat parapet roof -->
+  <rect x="70" y="172" width="230" height="70" fill="#e4d2b0"/>
+  <rect x="60" y="156" width="250" height="18" fill="#8a5a3b"/>
+  <rect x="150" y="200" width="34" height="42" fill="#16345c"/>
+  <rect x="100" y="185" width="30" height="26" fill="#c8a862" opacity="0.85"/>
+  <rect x="230" y="185" width="30" height="26" fill="#c8a862" opacity="0.85"/>
+  <rect x="0" y="238" width="400" height="8" fill="#0f2440" opacity="0.15"/>
+
+  <!-- horse-corral fence -->
+  <g stroke="#6b4a30" stroke-width="3" opacity="0.55">
+    <line x1="10" y1="255" x2="10" y2="280"/>
+    <line x1="42" y1="255" x2="42" y2="280"/>
+    <line x1="74" y1="255" x2="74" y2="280"/>
+    <line x1="6" y1="262" x2="78" y2="262"/>
+    <line x1="6" y1="274" x2="78" y2="274"/>
+  </g>
+
+  <circle cx="55" cy="55" r="22" fill="#c8a862" opacity="0.6"/>
+</svg>
